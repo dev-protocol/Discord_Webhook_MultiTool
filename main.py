@@ -10,9 +10,22 @@ def clear():
 option1 = colorama.Fore.RESET + '[' + colorama.Fore.LIGHTMAGENTA_EX + "1" + colorama.Fore.RESET + "]"
 option2 = colorama.Fore.RESET + '[' + colorama.Fore.LIGHTMAGENTA_EX + "2" + colorama.Fore.RESET + "]"
 option3 = colorama.Fore.RESET + '[' + colorama.Fore.LIGHTMAGENTA_EX + "3" + colorama.Fore.RESET + "]"
+option4 = colorama.Fore.RESET + '[' + colorama.Fore.LIGHTMAGENTA_EX + "4" + colorama.Fore.RESET + "]"
 choice_enter = (colorama.Fore.RESET + "[" + colorama.Fore.LIGHTMAGENTA_EX + ">" + colorama.Fore.RESET + "]" + "Enter Choice: ")
 lc = (colorama.Fore.RESET + "[" + colorama.Fore.LIGHTMAGENTA_EX + ">" + colorama.Fore.RESET + "]")
 
+def check_webhook():
+    clear()
+    webhook_url = input(lc + "Enter the Discord webhook URL you want to check: ")
+    response = requests.get(webhook_url)
+
+    if response.status_code == 200:
+        print(colorama.Fore.GREEN + "[+] Webhook is valid and accessible.")
+    else:
+        print(colorama.Fore.RED + "[-] Webhook is invalid or inaccessible.")
+
+    input(colorama.Fore.YELLOW + "Press any key to go back...")
+    handle_input()
 
 def set_window_title(title):
     try:
@@ -100,6 +113,7 @@ def handle_input():
     print("                                                " + option1 + "Spam Webhook")
     print("                                                " + option2 + "Delete Webhook")
     print("                                                " + option3 + "Send Single Message")
+    print("                                                " + option4 + "Check Webhook")
     choice = int(input(choice_enter))
     if choice == 1:
         webhook_spammer()
@@ -107,6 +121,12 @@ def handle_input():
         delete_webhook()
     if choice == 3:
         send_message()
+    if choice == 4:
+        check_webhook()
+    else:
+        print("Invalid choice. Please try again.")
+        input(colorama.Fore.YELLOW + "Press any key to go back...")
+        handle_input()
 
 handle_input()
 
